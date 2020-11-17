@@ -313,16 +313,21 @@ describe('Test Diagnose', () => {
   it('Result', () => {
     const diagnose = new Diagnose()
     diagnose.result()
-    diagnose['displayInitialize'] = jest.fn()
-    diagnose['mathBasicMetabolism'] = jest.fn()
-    diagnose['mathIntakeCalorieForKeep'] = jest.fn()
-    diagnose['mathConsumptionCalorieForKeep'] = jest.fn()
-    diagnose['mathLoseWeightMonth'] = jest.fn()
-    diagnose['mathCalorieForLoseWeightMonth'] = jest.fn()
-    diagnose['mathIntakeCalorieForLose'] = jest.fn()
-    diagnose['mathConsumptionCalorieForLose'] = jest.fn()
-    diagnose['mathGoalDay'] = jest.fn()
-    diagnose['displayResult'] = jest.fn()
+
+    const mockFnsArr = [
+      'displayInitialize',
+      'mathBasicMetabolism',
+      'mathIntakeCalorieForKeep',
+      'mathConsumptionCalorieForKeep',
+      'mathLoseWeightMonth',
+      'mathCalorieForLoseWeightMonth',
+      'mathIntakeCalorieForLose',
+      'mathConsumptionCalorieForLose',
+      'mathGoalDay',
+      'displayResult'
+    ] as const
+
+    mockFnsArr.map((info) => (diagnose[info] = jest.fn()))
 
     diagnose.heightValidation = true
     diagnose.ageValidation = true
